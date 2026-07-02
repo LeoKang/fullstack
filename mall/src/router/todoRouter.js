@@ -1,4 +1,4 @@
-import {Suspense} from "react";
+import {Suspense, lazy} from "react";
 
 const Loading = <div>Loading...</div>
 const TodoList = lazy(() => import("../pages/todo/ListPage"))
