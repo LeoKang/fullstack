@@ -4,6 +4,8 @@ import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.zerock.mallapi.dto.PageRequestDTO;
+import org.zerock.mallapi.dto.PageResponseDTO;
 import org.zerock.mallapi.dto.TodoDTO;
 
 import java.time.LocalDate;
@@ -31,5 +33,16 @@ public class TodoServiceTests {
         Long tno = 3L;
         TodoDTO todoDTO = todoService.get(tno);
         log.info(todoDTO);
+    }
+
+    @Test
+    public void testList() {
+        PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
+                .page(2)
+                .size(10)
+                .build();
+
+        PageResponseDTO<TodoDTO> response = todoService.list(pageRequestDTO);
+        log.info(response);
     }
 }
