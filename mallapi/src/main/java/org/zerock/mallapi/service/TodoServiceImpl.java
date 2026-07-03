@@ -9,6 +9,8 @@ import org.zerock.mallapi.domain.Todo;
 import org.zerock.mallapi.dto.TodoDTO;
 import org.zerock.mallapi.repository.TodoRepository;
 
+import java.util.Optional;
+
 @Service
 @Transactional
 @Log4j2
@@ -27,5 +29,14 @@ public class TodoServiceImpl implements TodoService {
         Todo savedTodo = todoRepository.save(todo);
 
         return savedTodo.getTno();
+    }
+
+    @Override
+    public TodoDTO get(Long tno) {
+        Optional<Todo> result = todoRepository.findById(tno);
+        Todo todo = result.orElseThrow();
+        TodoDTO dto = modelMapper.map(todo, TodoDTO.class);
+
+        return dto;
     }
 }
