@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react";
+import {getOne} from "../../api/todoApi";
 
 const initState = {
     tno: 0,
