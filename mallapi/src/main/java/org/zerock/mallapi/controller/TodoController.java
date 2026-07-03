@@ -45,6 +45,6 @@ public class TodoController {
         log.info("Modify: " + todoDTO);
         todoService.modify(todoDTO);
 
-        return Map.of("RESULT", "SICCESS");
+        return Map.of("RESULT", "SUCCESS");
     }
 }
