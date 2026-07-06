@@ -24,8 +24,7 @@ const AddComponent = () => {
         postAdd(todo)
             .then(result => {
                 console.log("handleClickAdd()");
-                console.log(result);
-                console.log(result.TNO);
+                console.log("result.TNO: " + result.TNO);
                 setResult(result.TNO)
                 setTodo({...initState})
             }).catch(e => {
