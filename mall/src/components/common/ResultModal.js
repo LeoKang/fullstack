@@ -13,7 +13,7 @@ const ResultModal = ({title, content, callbackFn}) => {
                 border-gray-500">
                     {title}
                 </div>
-                <div className="text-4xl border-oranger-400 border-b-4 pt-4 pb-4">
+                <div className="text-4xl border-orange-400 border-b-4 pt-4 pb-4">
                     {content}
                 </div>
                 <div className="justify-end flex">
