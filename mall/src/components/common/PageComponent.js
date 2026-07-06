@@ -18,8 +18,9 @@ const PageComponent = ({serverData, movePage}) => {
                     Next
                 </div>
             ) : (
-                <></>)}
+                <></>
+            )}
         </div>
     );
-}
+};
 export default PageComponent;
