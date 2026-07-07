@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {getOne} from "../../api/todoApi";
+import {deleteOne, getOne, putOne} from "../../api/todoApi";
 
 const initState = {
     tno: 0,
@@ -9,12 +9,24 @@ const initState = {
     complete: false
 }
 
-const ModifyComponent = ({tno, moveList, moveRead}) => {
+const ModifyComponent = ({tno}) => {
     const [todo, setTodo] = useState({...initState})
 
     useEffect(() => {
         getOne(tno).then(data => setTodo(data))
     }, [tno])
+
+    const handleClickModify = () => {
+        putOne(todo).then(data => {
+            console.log("modify result: " + data);
+        })
+    }
+
+    const handleClickDelete = () => {
+        deleteOne(tno).then(data => {
+            console.log("delete result: " + data);
+        })
+    }
 
     const handleChangeTodo = (e) => {
         todo[e.target.name] = e.target.value
@@ -71,7 +83,7 @@ const ModifyComponent = ({tno, moveList, moveRead}) => {
                     <select name="status"
                             className="border-solid border-2 rounded m-1 p-2"
                             onChange={handleChangeTodoComplete}
-                        value={todo.complete ? 'Y':'N'}>
+                            value={todo.complete ? 'Y' : 'N'}>
                         <option value="Y">Completed</option>
                         <option value="N">Not Yet</option>
                     </select>
@@ -80,11 +92,13 @@ const ModifyComponent = ({tno, moveList, moveRead}) => {
 
             <div className="flex justify-end p-4">
                 <button type="button"
-                        className="rounded p-4 m-2 text-xl w-32 text-white bg-red-500">
+                        className="rounded p-4 m-2 text-xl w-32 text-white bg-red-500"
+                        onClick={handleClickDelete}>
                     Delete
                 </button>
                 <button type="button"
-                        className="rounded p-4 m-2 text-xl w-32 text-white bg-blue-500">
+                        className="rounded p-4 m-2 text-xl w-32 text-white bg-blue-500"
+                        onClick={handleClickModify}>
                     Modify
                 </button>
             </div>
